@@ -1,15 +1,23 @@
 <script lang="ts">
 	import Bubble from "$lib/components/Bubble.svelte";
-    import { Role } from "$lib/types";
+    import type { IUser } from "$lib/types";
 
-    const test_data = [
+    const test_data: Array<{user: IUser, content: string}> = [
         {
-            role: Role.ASSISTANT,
-            content: "Hello, I am an assistant."
+            user: {
+                name: "Funny Turtle",
+                description: "Likes turtles",
+                color: 0xc9a2fe,
+            },
+            content: "Hello, I like turtles!",
         },
         {
-            role: Role.USER,
-            content: "Hello, I am a user."
+            user: {
+                name: "Animal Lover",
+                description: "Likes all animals equally",
+                color: 0x8ebf8a,
+            },
+            content: "Turtles are so cool man!",
         }
     ]
 </script>
@@ -17,7 +25,7 @@
 <div class="w-full h-full overflow-hidden flex justify-center items-start">
     <div class="w-full h-full">
         {#each test_data as data}
-            <Bubble role={data.role} content={data.content} />
+            <Bubble user={data.user} content={data.content} />
         {/each}
     </div>
 </div>

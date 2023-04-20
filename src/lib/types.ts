@@ -1,5 +1,5 @@
-export enum Role {
-    USER = "user",
-    ASSISTANT = "assistant",
-    SYSTEM = "system",
+export interface IUser {
+    name: string,
+    description: string,
+    color: number
 }

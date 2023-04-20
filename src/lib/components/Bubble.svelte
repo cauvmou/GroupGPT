@@ -1,16 +1,15 @@
 <script lang="ts">
-    import { Role } from "$lib/types";
+    import type { IUser } from "$lib/types";
 
-    export let role: Role;
+    export let user: IUser;
     export let content: string;
 </script>
 
 <div class="
     w-full 
-    {role != Role.USER ? "bg-surface-600" : ""} 
-    flex justify-center items-center flex-col
-    p-3">
-    <span class="lg:w-[1010px] w-full text-surface-400 capitalize"><b><i>{role}</i></b></span>
+    flex justify-center items-center flex-col border-l-4
+    p-3" style="background-color: #{user.color.toString(16)}0f; border-color: #{user.color.toString(16)}">
+    <span class="lg:w-[1010px] w-full capitalize" style="color: #{user.color.toString(16)}"><b><i>{user.name}</i></b></span>
     <div class="lg:w-[1010px] w-full py-1">
         <p>{content}</p>
     </div>
