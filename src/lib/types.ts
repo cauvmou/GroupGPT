@@ -1,5 +1,5 @@
 export interface IUser {
-    name: string,
-    description: string,
-    color: number
+	name: string;
+	description: string;
+	color: number;
 }
