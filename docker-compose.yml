@@ -10,14 +10,46 @@ services:
     networks:
       - intern
     command: "npm run dev -- --host"
-  backend:
-    container_name: group-gpt-backend
+  api:
+    container_name: group-gpt-api
     build:
-      dockerfile: ./Dockerfile
+      dockerfile: ./Dockerfile.api
+    volumes:
+      - ./api:/code/app
+    networks:
+      - intern
+  openai:
+    container_name: group-gpt-openai
+    image: openai
+    env_file:
+      - openai.env
+    build:
+      dockerfile: ./Dockerfile.openai
     volumes:
       - ./app:/code/app
     networks:
       - intern
+  mongo:
+    container_name: group-gpt-mongo
+    image: mongo
+    restart: always
+    volumes:
+      - ./mongo:/data/db
+    networks:
+      - intern
+    env_file: 
+      - ./mongo.env
+
+  mongo-express:
+    container_name: group-gpt-mongo-express
+    image: mongo-express
+    restart: always
+    networks:
+      - intern
+    ports:
+      - 8081:8081
+    env_file: 
+      - ./mongo.env
   proxy:
     container_name: group-gpt-nginx
     image: nginx
